@@ -36,6 +36,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // Definición de la estructura Asiento
 typedef struct
@@ -61,10 +62,24 @@ void  mostrarEstado       (Asiento avion[][COLUMNAS]);
 void  consultarReservas   (Asiento avion[][COLUMNAS]);
 
 void  limpia_buffer_de_entrada();
+int   avion_lleno(Asiento avion[][COLUMNAS]);
 
 void  limpia_buffer_de_entrada()
 {
   while(getchar()!='\n');
+}
+
+int avion_lleno(Asiento avion[][COLUMNAS])
+{
+  int pasajeros = 0;
+  for(int x=0; x<COLUMNAS; x++)
+  {
+    for(int y=0; y<FILAS; y++)
+    {
+      pasajeros += avion[y][x].ocupado;
+    }
+  }
+  return pasajeros == FILAS*COLUMNAS;
 }
 
 void  pausa(void)
@@ -84,7 +99,10 @@ int main()
     switch (op)
     {
     case 1:
-      reservarAsiento(avion);
+      if(!avion_lleno(avion))
+        reservarAsiento(avion);
+      else
+        printf("Imposible reservar, avion lleno!\n");
       break;
     case 2:
       cancelarReserva(avion);
@@ -135,9 +153,84 @@ int menu(void)
   return op;
 }
 
+void  strtoupper(char* str)
+{
+  if(str!=NULL)
+  {
+    int i = 0;
+    while(str[i]!='\0')
+    {
+      str[i] = toupper(str[i]);
+      i++;
+    }
+  }
+}
+
+/*
+  1. Realizar una reserva:
+    • Pedir al usuario el número de fila (1 a 25) y la columna ('A', 'B', 'C', 'D').
+    • Verificar si el asiento está disponible:
+      o Si está libre, solicitar el nombre del pasajero y completar la reserva.
+      o Si está ocupado, informar al usuario y permitirle elegir otro asiento.
+*/
 void  reservarAsiento     (Asiento avion[][COLUMNAS])
 {
+  int   numero_de_fila;
+  char  columna   ;
+  int   reintentar;
 
+  do
+  {
+    numero_de_fila  = 0;
+    columna         = 0;
+    reintentar      = 0;
+
+    printf("Ingrese numero de fila 1 a 25\n");
+    scanf("%d", &numero_de_fila);
+    limpia_buffer_de_entrada();
+    pausa();
+
+    if(numero_de_fila>=1 && numero_de_fila<=FILAS)
+    {
+      printf("Ingrese columna 'A','B','C','D'\n");
+      scanf("%c", &columna);
+      limpia_buffer_de_entrada();
+      pausa();
+      columna = toupper(columna);
+
+      if(columna>='A' && columna <='D')
+      {
+        if(avion[numero_de_fila-1][columna - 'A'].ocupado)
+        {
+          printf("Asiento ocupado\n");
+          reintentar = 1;
+        }
+        else
+        {
+          reintentar = 0;
+          printf("Ingrese nombre de pasajero\n");
+          scanf("%49s", avion[numero_de_fila-1][columna-'A'].pasajero);
+          limpia_buffer_de_entrada();
+          strtoupper(avion[numero_de_fila-1][columna-'A'].pasajero);
+          avion[numero_de_fila-1][columna-'A'].ocupado = 1;
+        }
+      }
+      else
+      {
+        printf("Columna fuera de rango, reintentando...\n");
+        reintentar = 1;
+      }
+    }
+    else
+    {
+      printf("Fila fuera de rango, reintentando...\n");
+      reintentar = 1;
+    }
+
+  }
+  while(reintentar);
+
+  pausa();
 }
 
 void  cancelarReserva     (Asiento avion[][COLUMNAS])
