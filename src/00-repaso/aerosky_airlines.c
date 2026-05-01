@@ -298,7 +298,62 @@ void  mostrarEstado       (Asiento avion[][COLUMNAS])
   pausa();
 }
 
+int asientos_ocupados(Asiento avion[][COLUMNAS])
+{
+  int pasajeros = 0;
+
+  for (int i = 0; i < FILAS; i++)
+  {
+    for (int j = 0; j < COLUMNAS; j++)
+    {
+      if(avion[i][j].ocupado)
+        pasajeros++;
+    }
+  }
+
+  return pasajeros;
+}
+
+/*
+  4. Buscar reservas por pasajero:
+    • Solicitar el nombre de un pasajero.
+    • Mostrar todos los asientos reservados a su nombre, si existen.
+    • Informar cuántos asientos están libres y cuántos ocupados en total.
+*/
 void  consultarReservas   (Asiento avion[][COLUMNAS])
 {
+  char  pasajero[50]  = "";
+  int   ocurrencia    = 0;
+
+  printf("Ingrese nombre de pasajero\n");
+  scanf("%49s", pasajero);
+  limpia_buffer_de_entrada();
+  strtoupper(pasajero);
+
+  printf("Asientos reservados a nombre de %s\n", pasajero);
+
+  for (int i = 0; i < FILAS; i++)
+  {
+    for (int j = 0; j < COLUMNAS; j++)
+    {
+      if(avion[i][j].ocupado && !strcmp(pasajero, avion[i][j].pasajero))
+      {
+        printf("[%2d|%2c: %-13.13s]  ", i+1, 'A' + j, avion[i][j].pasajero);
+        if(++ocurrencia%COLUMNAS==0 )
+        {
+          printf("\n");
+        }
+      }
+    }
+  }
+  if(!ocurrencia)
+  {
+    printf("No se encuentra ese pasajero\n");
+  }
+  printf("\n");
+
+  printf("Asientos ocupados : %4d\n", asientos_ocupados(avion));
+  printf("Asientos libres   : %4d\n", FILAS*COLUMNAS - asientos_ocupados(avion));
+  pausa();
 
 }
