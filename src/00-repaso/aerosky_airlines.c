@@ -83,3 +83,23 @@ int menu(void)
   while (op < 1 || op > 5);
   return op;
 }
+
+void  reservarAsiento     (Asiento avion[][COLUMNAS])
+{
+
+}
+
+void  cancelarReserva     (Asiento avion[][COLUMNAS])
+{
+
+}
+
+void  mostrarEstado       (Asiento avion[][COLUMNAS])
+{
+
+}
+
+void  consultarReservas   (Asiento avion[][COLUMNAS])
+{
+
+}
