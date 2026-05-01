@@ -145,9 +145,25 @@ void  cancelarReserva     (Asiento avion[][COLUMNAS])
 
 }
 
+/*
+  3. Mostrar estado del avión:
+    • Listar todos los asientos, indicando si están disponibles o reservados.
+    • Para los asientos ocupados, mostrar el nombre del pasajero.
+*/
 void  mostrarEstado       (Asiento avion[][COLUMNAS])
 {
-
+  for (int i = 0; i < FILAS; i++)
+  {
+    for (int j = 0; j < COLUMNAS; j++)
+    {
+      if(avion[i][j].ocupado)
+        printf("[%2d|%2c: %-13.13s]  ", i+1, 'A' + j, avion[i][j].pasajero);
+      else
+        printf("[%2d|%2c: %-13.13s]  ", i+1, 'A' + j, "LIBRE");
+    }
+    printf("\n");
+  }
+  pausa();
 }
 
 void  consultarReservas   (Asiento avion[][COLUMNAS])
