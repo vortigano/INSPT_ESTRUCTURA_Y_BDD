@@ -60,6 +60,13 @@ void  cancelarReserva     (Asiento avion[][COLUMNAS]);
 void  mostrarEstado       (Asiento avion[][COLUMNAS]);
 void  consultarReservas   (Asiento avion[][COLUMNAS]);
 
+void  limpia_buffer_de_entrada();
+
+void  limpia_buffer_de_entrada()
+{
+  while(getchar()!='\n');
+}
+
 int main()
 {
   int op;
@@ -114,6 +121,7 @@ int menu(void)
     printf(" 5. Salir\n");
     printf(" Ingrese una opcion [1-5]: ");
     scanf("%d", &op);
+    limpia_buffer_de_entrada();
   }
   while (op < 1 || op > 5);
   return op;
