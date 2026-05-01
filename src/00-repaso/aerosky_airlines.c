@@ -67,6 +67,12 @@ void  limpia_buffer_de_entrada()
   while(getchar()!='\n');
 }
 
+void  pausa(void)
+{
+  printf("Presiona ENTER para continuar...");
+  limpia_buffer_de_entrada();
+}
+
 int main()
 {
   int op;
