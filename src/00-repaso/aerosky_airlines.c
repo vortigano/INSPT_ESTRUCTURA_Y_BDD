@@ -1,3 +1,38 @@
+/*
+  MATERIA:    Estructura y base de datos
+  PROFESOR:   Lic. Jonathan G. Pécora
+  FECHA:      2026-05-01
+  ESTUDIANTE: Alberto Martín Capurro
+
+  Sistema de Gestión de Reservas para AeroSky Airlines
+  Objetivo
+  Desarrollar una aplicación para administrar la reserva de asientos en los vuelos de la aerolínea AeroSky Airlines. El sistema permitirá gestionar las solicitudes de los pasajeros de manera ordenada, optimizando la asignación de asientos y asegurando un control eficiente de la disponibilidad.
+  Los asientos del avión estarán representados en una matriz bidimensional, donde cada uno será una estructura con la siguiente información:
+  1. Número de fila (1 a 25).
+  2. Letra de la columna del asiento ('A', 'B', 'C', 'D').
+  3. Estado del asiento (disponible/reservado).
+  4. Nombre del pasajero (si el asiento está reservado).
+
+  Requisitos del Programa
+  El sistema debe ofrecer un menú interactivo con las siguientes funciones:
+  1. Realizar una reserva:
+    • Pedir al usuario el número de fila (1 a 25) y la columna ('A', 'B', 'C', 'D').
+    • Verificar si el asiento está disponible:
+      o Si está libre, solicitar el nombre del pasajero y completar la reserva.
+      o Si está ocupado, informar al usuario y permitirle elegir otro asiento.
+  2. Cancelar una reserva:
+    • Solicitar la fila y la columna del asiento a liberar.
+    • Si el asiento está reservado, eliminar la reserva y marcarlo como disponible.
+    • Si el asiento ya estaba libre, notificar al usuario.
+  3. Mostrar estado del avión:
+    • Listar todos los asientos, indicando si están disponibles o reservados.
+    • Para los asientos ocupados, mostrar el nombre del pasajero.
+  4. Buscar reservas por pasajero:
+    • Solicitar el nombre de un pasajero.
+    • Mostrar todos los asientos reservados a su nombre, si existen.
+    • Informar cuántos asientos están libres y cuántos ocupados en total.
+  5. Salir del programa.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
