@@ -100,6 +100,7 @@ int main()
   while (op < 5);
   return 0;
 }
+
 void inicializarAsientos(Asiento avion[][COLUMNAS])
 {
   for (int i = 0; i < FILAS; i++)
@@ -113,6 +114,7 @@ void inicializarAsientos(Asiento avion[][COLUMNAS])
     }
   }
 }
+
 int menu(void)
 {
   int op;
