@@ -233,9 +233,48 @@ void  reservarAsiento     (Asiento avion[][COLUMNAS])
   pausa();
 }
 
+/*
+  2. Cancelar una reserva:
+    • Solicitar la fila y la columna del asiento a liberar.
+    • Si el asiento está reservado, eliminar la reserva y marcarlo como disponible.
+    • Si el asiento ya estaba libre, notificar al usuario.
+*/
 void  cancelarReserva     (Asiento avion[][COLUMNAS])
 {
+  int   numero_de_fila;
+  char  columna;
 
+  printf("Ingrese numero de fila 1 a 25\n");
+  scanf("%d", &numero_de_fila);
+  limpia_buffer_de_entrada();
+
+  if(numero_de_fila>=1 && numero_de_fila<=FILAS)
+  {
+    printf("Ingrese columna 'A','B','C','D'\n");
+    scanf("%c", &columna);
+    limpia_buffer_de_entrada();
+    columna = toupper(columna);
+    if(columna>='A' && columna <='D')
+    {
+      if(avion[numero_de_fila - 1][columna - 'A'].ocupado)
+      {
+        printf("Eliminando reserva...\n");
+        avion[numero_de_fila - 1][columna - 'A'].ocupado      = 0;
+        avion[numero_de_fila - 1][columna - 'A'].pasajero[0]  = '\0';
+      }
+      else
+      {
+        printf("El asiento no estaba ocupado, fila: %2d   columna: %2c\n", numero_de_fila, columna);
+      }
+    }
+    else
+    {
+      printf("Columna fuera de rango %c\n", columna);
+    }
+  }
+  else
+    printf("Numero de fila fuera de rango %d\n", numero_de_fila);
+  pausa();
 }
 
 /*
