@@ -1,0 +1,21 @@
+Practica de recursividad
+1. Factorial de un número
+  Escriba un programa en C que calcule el factorial de un número entero positivo utilizando una función recursiva.
+2. Serie de Fibonacci
+  Escriba un programa que imprima los primeros N términos de la serie de Fibonacci utilizando recursividad.
+3. Suma de los primeros N números naturales
+  Escriba un programa que calcule la suma de los primeros N números naturales utilizando recursividad.
+4. Inversión de una cadena de caracteres
+  Escriba un programa que invierta una cadena de texto utilizando recursividad.
+5. Número elevado a una potencia
+  Escriba un programa que calcule la potencia de un número base elevado a un exponente usando recursividad.
+6. Contar dígitos de un número
+  Escriba un programa que cuente cuántos dígitos tiene un número entero utilizando una función recursiva.
+7. MCD (Máximo Común Divisor)
+  Escribir un programa que calcule el MCD de dos números utilizando el algoritmo de Euclides de forma recursiva.
+8. Verificar si un número es palíndromo
+  Escriba un programa que determine si un número entero es palíndromo utilizando recursividad.
+9. Suma de dígitos de un número
+  Escriba un programa que calcule la suma de los dígitos de un número entero utilizando recursividad.
+10. Imprimir números del 1 al N
+  Escriba un programa que imprima los números del 1 hasta N utilizando recursividad.
