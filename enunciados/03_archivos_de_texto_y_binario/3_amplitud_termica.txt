@@ -1,0 +1,50 @@
+/**
+  Sistema para gestión de registros de temperatura por ciudad
+  Se necesita desarrollar un sistema que registre las temperaturas máximas y mínimas por día,
+  de un determinado mes.
+  El mismo debe permitir al usuario realizar las siguientes operaciones:
+  - Ingreso de Registros: El usuario puede ingresar registros de temperatura para diferentes
+    ciudades, incluyendo el código de la ciudad, el nombre, las temperaturas mínima y máxima registradas.
+    El fin de la carga es ingresando código de ciudad igual a cero.
+    El desarrollo debe tener control de ese ingreso, lo que significa que si se ingresa
+    un código de ciudad que ya existe, el sistema no debe permitir el ingreso del mismo.
+    También, el sistema debe controlar el correcto ingreso de las temperaturas, siendo
+    la máxima mayor a la mínima y obviamente la mínima menor a la máxima.
+    Una vez realizado en ingreso, se tendrán que visualizar los siguientes resultados:
+
+  - Visualización de Estadísticas: El sistema proporciona una opción para que el usuario
+    pueda ver estadísticas sobre las temperaturas registradas, incluyendo la temperatura mínima,
+    máxima y la amplitud térmica (diferencia entre la temperatura máxima y mínima) de cada ciudad.
+    ESTADISTICA DE TEMPERATURA DE CIUDADES
+    COD    CIUDAD     MINIMA  MAXIMA  AMPLITUD
+    1   Mar del Plata 4.00    25.00   21.00
+    2   La Pampa      2.00    20.00   18.00
+    3   San Nicolas   6.00    30.00   24.00
+
+    la amplitud máxima es 24.00 y corresponde a  la ciudad de San Nicolás.
+
+  - Identificación de Amplitud Máxima: Además, el sistema identifica y muestra la ciudad
+    con la mayor amplitud térmica registrada.
+
+    El sistema utiliza un archivo binario para almacenar los registros de temperaturas
+    correspondientes a las ciudades a través del siguiente
+    struct:
+    typedef struct {
+      int cod_ciu;
+      char nom_ciu[30];
+      float t_min;
+      float t_max;
+      float dif_t;
+    } registro;
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+  int   cod_ciu;
+  char  nom_ciu[30];
+  float t_min;
+  float t_max;
+  float dif_t;
+} registro;
