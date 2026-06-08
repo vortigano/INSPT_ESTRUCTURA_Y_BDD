@@ -1,0 +1,38 @@
+Sistema para gestión de ventas
+Desarrollar un programa que permita gestionar un sistema de ventas, donde se registran clientes y artículos en archivos binarios. Cada cliente tiene un código único, un nombre y un saldo inicial, mientras que cada artículo tiene un código único, un nombre, un precio, una cantidad en stock y una facturación acumulada.
+
+Estructuras
+typedef struct
+{
+  int   cod_art;
+  char  nom_art[20];
+  float pre_art;
+  int   sto_art;
+  float fact_art;
+} regarti;
+
+typedef struct
+{
+  int   cod_cli;
+  char  nom_cli[20];
+  float cuenta;
+} regcli;
+
+El sistema debe ofrecer las siguientes funcionalidades:
+
+Inicio del sistema: Al inicio, el programa carga desde una función llamada, los archivos binarios de clientes y artículos.
+
+Para nuestro pequeño modelo, lo tendremos en vectores, cuestión de agilizar la carga, inicializándo los registros con datos predefinidos de clientes y artículos.
+
+char  nomcli[][20]  = {"LOPEZ",     "RODRIGUEZ",    "GARCIA",   "MARTINEZ", "RAMIREZ"};
+char  nomart[][20]  = {"COCA COLA", "AGUA TONICA",  "N.FANTA",  "SPRITE",   "POMELO", "MANDARINA"};
+float pre[]         = {2000.70,     3000.75,        3000.66,    2000.80,    2000.89,  3000.01};
+int   sto[]         = {73,          120,            76,         34,         77,       98};
+
+Mostrar información: Permite visualizar la información de los clientes y los artículos almacenados en los archivos.
+
+Ingreso de ventas: Permite ingresar ventas asociadas a un número de factura. Para finalizar los ingresos pondremos número de factura igual a cero.
+
+Ahora bien, deberemos poder seleccionar un cliente por su código al igual que los artículos que le facturaremos. El programa verifica si la cantidad solicitada del artículo está disponible en el stock antes de registrar la venta. Si hay suficiente stock, actualiza
+la facturación del artículo y reduce la cantidad disponible en el mismo. Además, actualiza el saldo del cliente con el monto total de la compra.
+El programa puede ser finalizado ingresando un número de factura igual a cero.
