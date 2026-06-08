@@ -1,6 +1,6 @@
 /*
   MATERIA:    Estructura y base de datos
-  TITULO:     Ejercicios de arcihvos de texto y binario
+  TITULO:     Ejercicios de archivos de texto y binario
   PROFESOR:   Lic. Jonathan G. Pécora
   FECHA:      2026-05-27
   ESTUDIANTE: Alberto Martín Capurro
