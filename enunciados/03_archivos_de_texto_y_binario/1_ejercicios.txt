@@ -1,0 +1,9 @@
+Ejercicios con archivos de texto
+
+1) Capturar un texto de varios renglones desde un archivo de orígen y guardarlo en su totalidad en un archivo de destino.
+
+2) Contar la cantidad de palabras por renglón que tiene un archivo de texto.
+
+3) Contar la cantidad de vocales por renglón que tiene un archivo de texto.
+
+4) Leer cifras binarias de 8bits desde un archivo de texto y calcular su valor en decimal a través del teorema fundamental.
