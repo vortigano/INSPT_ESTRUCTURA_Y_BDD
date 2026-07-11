@@ -116,8 +116,10 @@ int main()
       case COLA_OPCION_PRE_DESACOLAR:
       {
         if (verificar(p) != NULL)
+        {
           r = desacolar(&p);
-        dato_eliminado(r);
+          dato_eliminado(r);
+        }
         break;
       }
       case COLA_OPCION_PRE_LISTAR:
