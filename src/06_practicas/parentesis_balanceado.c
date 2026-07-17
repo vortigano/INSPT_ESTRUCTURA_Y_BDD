@@ -252,7 +252,7 @@ int main(void)
     printf("%s\n", expresion);
 
     analizar_expresion(&analisis, expresion);
-    printf("Presione ENTER para continar\n");
+    printf("Presione ENTER para continuar\n");
     while(getchar()!='\n');
     pila_tok_vaciar(&analisis);
   }
