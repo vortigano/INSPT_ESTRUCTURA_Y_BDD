@@ -170,9 +170,14 @@ void pila_tok_mostrar(t_analisis *analisis)
 
 void analizar_expresion(t_analisis *analisis, char * expresion)
 {
-  int error = 0;
+  typedef struct{
+    int code;
+    int pos;
+  } t_error;
+  t_error error = {0,-1};
+
   int i = 0;
-  while(!error && *expresion)
+  while(!error.code && *expresion)
   {
     //printf("[%c]", *expresion);
     t_token tok = {*expresion, i};
@@ -181,7 +186,10 @@ void analizar_expresion(t_analisis *analisis, char * expresion)
       case ']':
       {
         if(pila_tok_peek(analisis).c!='[')
-          error = 1;
+        {
+          error.code  = 1;
+          error.pos   = i;
+        }
         else
           pila_tok_desapilar(analisis);
         break;
@@ -189,7 +197,10 @@ void analizar_expresion(t_analisis *analisis, char * expresion)
       case '}':
       {
         if(pila_tok_peek(analisis).c!='{')
-          error = 1;
+        {
+          error.code  = 1;
+          error.pos   = i;
+        }
         else
           pila_tok_desapilar(analisis);
         break;
@@ -197,7 +208,10 @@ void analizar_expresion(t_analisis *analisis, char * expresion)
       case ')':
       {
         if(pila_tok_peek(analisis).c!='(')
-          error = 1;
+        {
+          error.code  = 1;
+          error.pos   = i;
+        }
         else
           pila_tok_desapilar(analisis);
         break;
@@ -212,19 +226,32 @@ void analizar_expresion(t_analisis *analisis, char * expresion)
     i++;
   }
   puts("");
-  if(!error && analisis->pila != NULL)
-    error = 2;
+  if(!error.code && analisis->pila != NULL)
+  {
+    error.code  = 2;
+    error.pos   = pila_tok_peek(analisis).pos;
+  }
 
-  switch(error)
+  switch(error.code)
   {
     case 1:
     {
+      for(int i=0; i<error.pos; i++)
+      {
+        printf(" ");
+      }
+      printf("^\n");
       printf("ERROR: error de cierre, no coincide o falta apertura\n");
       break;
     }
     case 2:
     {
-      printf("ERROR: Faltan cierres, la pila no quedo vacia\n");
+      for(int i=0; i<error.pos; i++)
+      {
+        printf(" ");
+      }
+      printf("^\n");
+      printf("ERROR: apertura sin cierre, la pila no quedo vacia\n");
       break;
     }
     default:
@@ -249,7 +276,7 @@ int main(void)
 
     leer_cadena_hasta_salto_de_linea(expresion, EXPRESION_MAX_CHARS);
 
-    printf("%s\n", expresion);
+    //printf("%s\n", expresion);
 
     analizar_expresion(&analisis, expresion);
     printf("Presione ENTER para continuar\n");
