@@ -1,0 +1,5 @@
+exp_balanceada  = {par_balanceada | cor_balanceada | lla_balanceada | caracter_comun }.
+caracter_comun  = "cualquier caracter excepto ( ) [ ] { }".
+par_balanceada  = '(' exp_balanceada ')'.
+cor_balanceada  = '[' exp_balanceada ']'.
+lla_balanceada  = '{' exp_balanceada '}'.
