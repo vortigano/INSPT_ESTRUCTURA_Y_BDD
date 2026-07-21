@@ -176,56 +176,90 @@ void analizar_expresion(t_analisis *analisis, char * expresion)
   } t_error;
   t_error error = {0,-1};
 
+  const char COMILLA_DOBLE  = '\"';
+  const char COMILLA_SIMPLE = '\'';
+  typedef struct{
+    int   en_cadena;
+    char  delimitador;
+    int   init_pos;
+  } t_cadena_status;
+  t_cadena_status cadena_status = {0, 0, 0};
+
   int i = 0;
   while(!error.code && *expresion)
   {
     //printf("[%c]", *expresion);
     t_token tok = {*expresion, i};
-    switch(*expresion)
+    if(*expresion == COMILLA_SIMPLE || *expresion == COMILLA_DOBLE)
     {
-      case ']':
+      if(!cadena_status.en_cadena)
       {
-        if(pila_tok_peek(analisis).c!='[')
-        {
-          error.code  = 1;
-          error.pos   = i;
-        }
-        else
-          pila_tok_desapilar(analisis);
-        break;
+        cadena_status.en_cadena   = 1;
+        cadena_status.delimitador = *expresion;
+        cadena_status.init_pos    = i;
       }
-      case '}':
+      else if(*expresion == cadena_status.delimitador)
       {
-        if(pila_tok_peek(analisis).c!='{')
-        {
-          error.code  = 1;
-          error.pos   = i;
-        }
-        else
-          pila_tok_desapilar(analisis);
-        break;
+        cadena_status.en_cadena   = 0;
+        cadena_status.delimitador = 0;
+        cadena_status.init_pos    = 0;
       }
-      case ')':
+    }
+
+    if(!cadena_status.en_cadena)
+    {
+      switch(*expresion)
       {
-        if(pila_tok_peek(analisis).c!='(')
+        case ']':
         {
-          error.code  = 1;
-          error.pos   = i;
+          if(pila_tok_peek(analisis).c!='[')
+          {
+            error.code  = 1;
+            error.pos   = i;
+          }
+          else
+            pila_tok_desapilar(analisis);
+          break;
         }
-        else
-          pila_tok_desapilar(analisis);
-        break;
-      }
-      case '[': case '{': case '(':
-      {
-        pila_tok_apilar(analisis, tok);
-        break;
+        case '}':
+        {
+          if(pila_tok_peek(analisis).c!='{')
+          {
+            error.code  = 1;
+            error.pos   = i;
+          }
+          else
+            pila_tok_desapilar(analisis);
+          break;
+        }
+        case ')':
+        {
+          if(pila_tok_peek(analisis).c!='(')
+          {
+            error.code  = 1;
+            error.pos   = i;
+          }
+          else
+            pila_tok_desapilar(analisis);
+          break;
+        }
+        case '[': case '{': case '(':
+        {
+          pila_tok_apilar(analisis, tok);
+          break;
+        }
       }
     }
     expresion++;
     i++;
   }
   puts("");
+  if(cadena_status.en_cadena)
+  {
+    error.code  = 3;
+    error.pos   = cadena_status.init_pos;
+  }
+
   if(!error.code && analisis->pila != NULL)
   {
     error.code  = 2;
@@ -252,6 +286,16 @@ void analizar_expresion(t_analisis *analisis, char * expresion)
       }
       printf("^\n");
       printf("ERROR: apertura sin cierre, la pila no quedo vacia\n");
+      break;
+    }
+    case 3:
+    {
+      for(int i=0; i<error.pos; i++)
+      {
+        printf(" ");
+      }
+      printf("^\n");
+      printf("ERROR: la cadena no tiene cierre\n");
       break;
     }
     default:
