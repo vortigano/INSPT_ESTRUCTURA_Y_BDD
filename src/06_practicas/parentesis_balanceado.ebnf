@@ -1,5 +1,8 @@
-exp_balanceada  = {par_balanceada | cor_balanceada | lla_balanceada | caracter_comun }.
-caracter_comun  = "cualquier caracter excepto ( ) [ ] { }".
+exp_balanceada  = {cadena | par_balanceada | cor_balanceada | lla_balanceada | caracter_comun }.
+cadena          = cadena_doble|cadena_simple.
+cadena_doble    = '"' "cualquier caracter excepto comillas dobles" '"'.
+cadena_simple    = "'" "cualquier caracter excepto comilla simple" "'".
 par_balanceada  = '(' exp_balanceada ')'.
 cor_balanceada  = '[' exp_balanceada ']'.
 lla_balanceada  = '{' exp_balanceada '}'.
+caracter_comun  = "cualquier caracter excepto ( ) [ ] { }".

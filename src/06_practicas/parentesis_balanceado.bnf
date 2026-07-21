@@ -1,9 +1,13 @@
 <exp_balanceada> ::= ""
+                  | <cadena> <exp_balanceada>
                   | <par_balanceada> <exp_balanceada>
                   | <cor_balanceada> <exp_balanceada>
                   | <lla_balanceada> <exp_balanceada>
                   | <caracter_comun> <exp_balanceada>
-<caracter_comun>  ::= cualquier carácter excepto '(', ')', '[', ']', '{', '}'
+<cadena>          ::= <cadena_doble> | <cadena_simple>
+<cadena_doble>    ::= '"' cualquier carácter excepto comillas dobles '"'
+<cadena_simple>   ::= ''' cualquier carácter excepto comilla simple '''
 <par_balanceada>  ::= '(' <exp_balanceada> ')'
 <cor_balanceada>  ::= '[' <exp_balanceada> ']'
 <lla_balanceada>  ::= '{' <exp_balanceada> '}'
+<caracter_comun>  ::= cualquier carácter excepto '(', ')', '[', ']', '{', '}'
