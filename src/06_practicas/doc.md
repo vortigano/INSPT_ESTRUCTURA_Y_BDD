@@ -41,5 +41,6 @@ Utiliza una pila dinámica como memoria auxiliar para recordar las aperturas pen
 ![caracter_comun](doc/caracter_comun.png)
 
 ## Notas
->`cadena_doble` `cadena_simple`, continen cualquier carácter que no sea el delimitador correspondiente al mismo que produce la apertura de la cadena.
->`caracter_comun` representa cualquier carácter que no sea `(`, `)`, `[`, `]`, `{` o `}`. No se enumeran explícitamente por brevedad.
+>- `cadena_doble` `cadena_simple`, contienen cualquier carácter que no sea el delimitador correspondiente al mismo que produce la apertura de la cadena ¹.
+>- `caracter_comun` representa cualquier carácter que no sea `(`, `)`, `[`, `]`, `{`, `}` o comillas dobles o simples ¹.
+> 1. "cualquier carácter" no se enumera explícitamente por brevedad.

@@ -5,4 +5,4 @@ cadena_simple    = "'" "cualquier caracter excepto comilla simple" "'".
 par_balanceada  = '(' exp_balanceada ')'.
 cor_balanceada  = '[' exp_balanceada ']'.
 lla_balanceada  = '{' exp_balanceada '}'.
-caracter_comun  = "cualquier caracter excepto ( ) [ ] { }".
+caracter_comun  = "cualquier caracter excepto ( ) [ ] { } o comillas dobles o simples".
