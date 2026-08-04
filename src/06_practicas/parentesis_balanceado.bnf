@@ -10,4 +10,4 @@
 <par_balanceada>  ::= '(' <exp_balanceada> ')'
 <cor_balanceada>  ::= '[' <exp_balanceada> ']'
 <lla_balanceada>  ::= '{' <exp_balanceada> '}'
-<caracter_comun>  ::= cualquier carácter excepto '(', ')', '[', ']', '{', '}'
+<caracter_comun>  ::= cualquier carácter excepto '(', ')', '[', ']', '{', '}', '"', '''
